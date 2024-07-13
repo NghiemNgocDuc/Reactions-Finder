@@ -1,0 +1,56 @@
+
+    <header class="header-global">
+        <nav id="navbar-main" aria-label="Primary navigation" class="navbar navbar-main navbar-expand-lg navbar-theme-primary headroom navbar-dark">
+            <div class="container position-relative">
+                <div class="navbar-collapse collapse me-auto" id="navbar_global">
+                    <div class="navbar-collapse-header">
+                        <div class="row">
+                            <div class="col-6 collapse-brand">
+                                
+                            </div>
+                            <div class="col-6 collapse-close">
+                                <a href="#navbar_global" class="fas fa-times" data-bs-toggle="collapse" data-bs-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" title="close" aria-label="Toggle navigation">Kiem tra </a>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="navbar-nav navbar-nav-hover align-items-lg-right">         
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" id="frontPagesDropdown" aria-expanded="false" data-bs-toggle="dropdown" style="color: rgb(223, 236, 32)">
+                                Màn hình chức năng 
+                                <span class="fas fa-angle-down nav-link-arrow ms-1"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-megamenu px-0 py-2 p-lg-4" aria-labelledby="frontPagesDropdown">
+                                <div class="row">
+                                    <div class="col-4 col-lg-8">
+                                        <h6 class="d-block mb-3 text-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hỗ trợ học hóa </h6>
+                                        <ul class="list-style-none mb-4">
+                                            <li class="mb-2 megamenu-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <a class="megamenu-link" href="/tim_kiem_pu_hh">Tra cứu phản ứng hóa học</a>
+                                            </li>
+                                            <li class="mb-2 megamenu-item">
+                                                <a class="megamenu-link" href="/lich_su_tim_kiem_ket_qua_ton_tai">Lịch sử tra cứu phản ứng</a>
+                                            </li>
+                                            <li class="mb-2 megamenu-item">
+                                                <a class="megamenu-link" href="/lich_su_tim_kiem_ket_qua_khong_ton_tai">Nội dung tra cứu chưa có kết quả</a>
+                                            </li>
+                                            <li class="mb-2 megamenu-item">
+                                                <a class="megamenu-link" href="/danh_sach_quan_tam">Danh sách phản ứng quan tâm</a>
+                                            </li>
+                                            <li class="mb-2 megamenu-item">
+                                                <a class="megamenu-link" href="/change_password">Thay đổi mật khẩu</a>
+                                            </li>
+                                        </ul>
+                                    </div>                                   
+                                </div>
+                            </div>
+                        </li>                                              
+                    </ul>
+                </div>
+                <div class="d-flex align-items-center">
+                    <a href="{{ url_for('authentication_blueprint.logout') }}"
+                       class="btn btn-outline-gray-100 d-none d-lg-inline me-md-3" style="color: rgb(223, 236, 32)"><span class="fas fa-sign-out-alt me-2"></span>Thoát đăng nhập</a>                    
+                </div>
+            </div>
+        </nav>
+    </header>
+

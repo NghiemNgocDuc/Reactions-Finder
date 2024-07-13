@@ -1,0 +1,84 @@
+{% extends "layouts/base-fullscreen.html" %}
+
+{% block title %} Sign UP {% endblock %} 
+
+
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    {% include 'includes/pu_hh_nav_ad.html' %}
+    <main>
+
+        {% include 'includes/preloader.html' %}
+
+        
+        <section class="min-vh-100 d-flex align-items-center section-image overlay-soft-dark" data-background="https://cdna.artstation.com/p/assets/images/images/042/120/410/large/killian-prevost-seacloud.jpg?1633622280" background-repeat: no-repeat>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 d-flex align-items-center justify-content-center">
+                        <div class="signin-inner my-4 my-lg-0 bg-white shadow-soft border rounded border-gray-400 p-4 p-lg-5 w-100 fmxw-5000">
+                            <div class="text-center text-md-center mb-4 mt-md-0">
+                                <h1 class="mb-0 h3">Tạo/Chỉnh sửa thông tin phản ứng hóa học</h1>
+                                <br />
+                                <span class="font-weight-normal">
+                                    {% if msg %}
+                                        {{ msg | safe }}
+                                    {% else %}
+                                        
+                                    {% endif %}                                  
+                                </span>
+                            </div>
+                            <form method="post" action="/tao_co_so_du_lieu_admin">                                                                
+                                <div class="form-group">
+                                    <!-- Form -->
+                                    <div class="form-group mb-4">
+                                        <label for="ct_puhh">Công thức của phản ứng hóa học</label>
+                                        <div class="input-group">                                           
+                                            {{ form.ct_puhh(class="form-control") }}                                            
+                                        </div>
+                                        <label for="ct_puhh">Điều kiện của phản ứng</label>
+                                        <div class="input-group">                                           
+                                            {{ form.dkpu(class="form-control") }}
+                                        </div>
+                                        <label for="ct_puhh">Đường dẫn hình ảnh minh họa</label>
+                                        <div class="input-group">                                           
+                                            {{ form.dd_hinhanh(class="form-control") }}
+                                        </div>  
+                                    </div>
+                                    {{ form.update_pu_id(class="form-control") }}
+                                    <!-- End of Form -->
+                                </div>
+                                <div class="d-grid">
+                                    <button type="summit" name="Luu" id="Luu" class="btn btn-primary">Lưu</button>
+                                </div>
+                            </form>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock content %}
+
+
+{% block javascripts %}
+<script type="text/javascript">
+    function onDetail(pu_id) {
+        window.location.href = '/chi_tiet_pu_hh?pu_id=' + pu_id;
+    }
+    window.addEventListener('DOMContentLoaded', (event) => {
+            // Lấy danh sách tất cả các hàng trong tbody của bảng
+            var rows = document.querySelectorAll('tbody tr');
+            
+            // Lấy hàng cuối cùng trong danh sách
+            var lastRow = rows[rows.length - 1];
+            
+            // Kiểm tra nếu hàng cuối cùng không có nội dung, thì xóa nó đi
+            if (lastRow.cells[0].innerHTML === "") {
+                lastRow.parentNode.removeChild(lastRow);
+            }
+        });
+</script>
+{% endblock javascripts %}

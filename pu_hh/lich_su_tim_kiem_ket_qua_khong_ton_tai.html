@@ -1,0 +1,97 @@
+{% extends "layouts/base-fullscreen.html" %}
+
+{% block title %} Sign UP {% endblock %} 
+
+
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    {% include 'includes/pu_hh_nav.html' %}
+    <main>
+
+        {% include 'includes/preloader.html' %}
+
+        <!-- Section -->
+        <section class="min-vh-100 d-flex align-items-center section-image overlay-soft-dark" data-background="https://getwallpapers.com/wallpaper/full/3/e/6/357607.jpg" >
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 d-flex align-items-center justify-content-center">
+                        <div class="signin-inner my-4 my-lg-0 bg-white shadow-soft border rounded border-gray-400 p-4 p-lg-5 w-100 fmxw-4000">
+                            <div class="text-center text-md-center mb-4 mt-md-0">
+                                <h1 class="mb-0 h3">Lịch sử tra cứu kết quả phản ứng không tồn tại</h1>
+                                <br />
+                                <span class="font-weight-normal">
+                                    {% if msg %}
+                                        {{ msg | safe }}
+                                    {% else %}
+                                       Lịch sử tra cứu phản ứng hóa học không tồn tại
+                                    {% endif %}                                  
+                                </span>
+                            </div>
+
+                            
+
+                                <form method="post" action="/tao_co_so_du_lieu_admin" name="bosungdl">
+                                                                   
+                                    
+                                    <style>
+                                        table, th, td {
+                                          border: solid black;
+                                          border-collapse: collapse;
+                                        }
+                                        </style>
+                                    <h1>Kết quả phản ứng không tồn tại</h1>
+
+                                    <table style="width:100%">
+                                      <tr>
+                                        <th>STT</th>
+                                        <th>Thông tin tra cứu</th>
+                                        <th>Thời gian tra cứu</th>
+                                        <th>Hành động</th>
+                                      </tr>
+
+
+
+
+                                      {% for lichsutimkiem in form.lichSuTimKiemKetQuaKhongTonTai%}
+                                      {% set counter = loop.index %}
+                                      <tr id="row-{{ counter }}">
+                                        <td>{{ counter }}</td>
+                                        <td>{{lichsutimkiem.tt_tra_cuu}}</td>
+                                        <td>{{lichsutimkiem.thoi_gian_tra_cuu}}</td>
+                                        <td><a href="javascript:onEdit('{{lichsutimkiem.tt_tra_cuu}}')">Bổ sung dữ liệu</a></td>
+                                    </tr>
+                                    {% endfor %}
+                                      
+                                    </table>
+                                    <input type="hidden" name="ct_puhh" id="ct_puhh"/>
+                                </form>
+                            
+                            
+
+                            <br />
+
+                            
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+{% endblock content %}
+
+
+{% block javascripts %}
+<script type="text/javascript">
+    function onEdit(ttBosung) {
+        window.bosungdl.ct_puhh.value=ttBosung;
+        window.bosungdl.submit();
+    }  
+    
+    
+     
+</script>
+{% endblock javascripts %}

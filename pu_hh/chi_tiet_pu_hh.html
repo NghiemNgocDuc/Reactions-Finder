@@ -1,0 +1,83 @@
+{% extends "layouts/base-fullscreen.html" %}
+
+{% block title %} Sign IN {% endblock %} 
+
+
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    {% include 'includes/pu_hh_nav.html' %}
+
+    <main>
+
+        {% include 'includes/preloader.html' %}
+
+        <!-- Section -->
+        <section class="min-vh-100 d-flex align-items-center section-image overlay-soft-dark" data-background="https://wallpaperbat.com/img/478045-aaron-campbell-digital-art-trees-clouds-forest-fantasy-art-mountains-sunset-watchtower-wallpaper-hd-desktop-and-mobile-background.jpg" background-repeat: no-repeat>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 d-flex align-items-center justify-content-center">
+                        <div class="signin-inner my-4 my-lg-0 bg-white shadow-soft border rounded border-gray-400 p-4 p-lg-5 w-100 fmxw-5000">
+                            <div class="text-center text-md-center mb-4 mt-md-0">
+                                <h1 class="mb-0 h3">Thông tin chi tiết phản ứng hóa học</h1>
+                            <br />                               
+                            </div>
+                            <form method="post" action="/dulieu_quan_tam" class="mt-4">
+
+                                {{ form.hidden_tag() }}
+
+                                <!-- Form -->
+                                <div class="form-group mb-4">
+                                <center> 
+                                    <label for="chat_tg">Hiển thị chi tiết phản ứng và hình ảnh minh họa của phản ứng {{form.ket_qua_pu}}</label>
+                                </center>    
+                                    <div style="text-align: center;"> 
+                                        <div id="ytplayer"></div>
+                                    </div>
+                                </div>
+                                <!-- End of Form -->                                
+                               <center>
+                                <div class="d-grid">
+                                    {{ form.pu_id(class="form-control") }}
+                                    <button type="submit" name="quantam" class="btn btn-primary">Quan tâm</button>
+                                </div>
+                               </center>
+                            </form>
+
+                            <br />
+
+                            <div class="d-flex justify-content-center align-items-center mt-4">
+                                <span class="fw-normal">
+                                    
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+{% endblock content %}
+
+
+{% block javascripts %}
+<script type="text/javascript">
+    
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/player_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  
+    
+    var player;
+    function onYouTubePlayerAPIReady() {
+      player = new YT.Player('ytplayer', {
+        height: '360',
+        width: '640',
+        videoId: '{{form.hinh_anh}}'
+      });
+    }
+  </script>
+{% endblock javascripts %}

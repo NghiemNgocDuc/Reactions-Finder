@@ -1,0 +1,93 @@
+{% extends "layouts/base-fullscreen.html" %}
+
+{% block title %} Sign UP {% endblock %} 
+
+
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    {% include 'includes/pu_hh_nav.html' %}
+    <main>
+
+        {% include 'includes/preloader.html' %}
+
+        <!-- Section -->
+        <section class="min-vh-100 d-flex align-items-center section-image overlay-soft-dark" data-background="https://static.vecteezy.com/system/resources/previews/021/171/635/large_2x/colorful-abstract-wallpaper-modern-background-ai-generated-free-photo.jpg" background-repeat: no-repeat>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 d-flex align-items-center justify-content-center">
+                        <div class="signin-inner my-4 my-lg-0 bg-white shadow-soft border rounded border-gray-400 p-4 p-lg-5 w-100 fmxw-4000">
+                            <div class="text-center text-md-center mb-4 mt-md-0">
+                                <h1 class="mb-0 h3">Danh sách quan tâm</h1>
+                                <br />
+                                <span class="font-weight-normal">
+                                    {% if msg %}
+                                        {{ msg | safe }}
+                                    {% else %}
+                                       
+                                    {% endif %}                                  
+                                </span>
+                            </div>
+
+                            
+
+                                <form method="post" action="" action="#">
+                                                                   
+                                    
+                                    <style>
+                                        table, th, td {
+                                          border: solid black;
+                                          border-collapse: collapse;
+                                        }
+                                        </style>
+                                    <h1>Kết quả phản ứng</h1>
+
+                                    <table style="width:100%">
+                                      <tr>
+                                        <th>STT</th>
+                                        <th>Chất tham gia phản ứng</th>
+                                        <th>Phản ứng hóa học</th>
+                                        <th>Hành động</th>
+                                        <th>Xóa hành động</th>
+                                      </tr>
+                                      {% for lichsutimkiem in form.danhSachPhanUngQuanTam%}
+                                      {% set counter = loop.index %}
+                                      <tr id="row-{{ counter }}">
+                                        <td>{{ counter }}</td>
+                                        <td>{{lichsutimkiem.tt_tra_cuu}}</td>
+                                        <td>{{lichsutimkiem.ct_kq_pu}}</td>  
+                                        <td><a href="javascript:onDetail({{lichsutimkiem.pu_id}})">Chi tiết</a></td>
+                                        <td><a href="javascript:Xoa_Phan_Ung({{lichsutimkiem.pu_id}})">Xóa</a></td>
+                                      </tr>
+                                        {% endfor %}
+                                    </table>
+                                   
+                                </form>
+                            
+                            
+
+                            <br />
+
+                            
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+{% endblock content %}
+
+{% block javascripts %}
+<script type="text/javascript">
+    function Xoa_Phan_Ung(pu_id) {
+        window.location.href = '/xoa_phan_ung?pu_id=' + pu_id;
+    }
+    
+    function onDetail(pu_id) {
+        window.location.href = '/chi_tiet_pu_hh?pu_id=' + pu_id;
+    }
+</script>
+{% endblock javascripts %}

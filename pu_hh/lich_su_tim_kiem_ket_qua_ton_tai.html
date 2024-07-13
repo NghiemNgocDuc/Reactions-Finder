@@ -1,0 +1,106 @@
+{% extends "layouts/base-fullscreen.html" %}
+
+{% block title %} Sign UP {% endblock %} 
+
+
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    {% include 'includes/pu_hh_nav.html' %}
+    <main>
+
+        {% include 'includes/preloader.html' %}
+
+        <!-- Section -->
+        <section class="min-vh-100 d-flex align-items-center section-image overlay-soft-dark" data-background="https://th.bing.com/th/id/R.14d380a8eb177c08c73c20f43c596998?rik=mNNBa0xIZs0kvw&riu=http%3a%2f%2fwallpapercave.com%2fwp%2fcb3jaMQ.jpg&ehk=J6LznhIRkjsktHB0K2ImgspjQlwlrdmGzyyaZuMeHP0%3d&risl=&pid=ImgRaw&r=0" >
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 d-flex align-items-center justify-content-center">
+                        <div class="signin-inner my-4 my-lg-0 bg-white shadow-soft border rounded border-gray-400 p-4 p-lg-5 w-100 fmxw-4000">
+                            <div class="text-center text-md-center mb-4 mt-md-0">
+                                <h1 class="mb-0 h3">Lịch sử tra cứu kết quả tồn tại</h1>
+                                <br />
+                                <span class="font-weight-normal">
+                                    {% if msg %}
+                                        {{ msg | safe }}
+                                    {% else %}
+                                        
+                                    {% endif %}                                  
+                                </span>
+                            </div>
+
+                            
+
+                                <form method="post" action="" action="#">
+                                                                   
+                                    
+                                    <style>
+                                        table, th, td {
+                                          border: solid black;
+                                          border-collapse: collapse;
+                                        }
+                                        </style>
+                                    <h1>Kết quả phản ứng tồn tại</h1>
+
+                                    <table style="width:100%">
+                                      <tr>
+                                        <th>STT</th>
+                                        <th>Thông tin tra cứu</th>
+                                        <th>Kết quả tra cứu</th>
+                                        <th>Thời gian tra cứu</th>
+                                        <th>Hành động</th>
+                                      </tr>
+                                      
+                                      {% for lichsutimkiem in form.lichSuTimKiemKetQuaTonTai%}
+                                      {% set counter = loop.index %}
+                                      <tr id="row-{{ counter }}">
+                                        <td>{{ counter }}</td>
+                                        <td>{{lichsutimkiem.tt_tra_cuu}}</td>
+                                        <td>{{lichsutimkiem.ct_kq_pu}}</td>
+                                        <td>{{lichsutimkiem.thoi_gian_tra_cuu}}</td>
+                                        <td><a href="javascript:onDetail({{lichsutimkiem.id_kq_pu}})">Chi tiết</a></td>
+                                        
+                                      </tr>
+                                        {% endfor %}
+                                        
+                                      
+                                    </table>
+                                   
+                                </form>
+                            
+                            
+
+                            <br />
+
+                            
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+{% endblock content %}
+
+
+{% block javascripts %}
+<script type="text/javascript">
+    function onDetail(pu_id) {
+        window.location.href = '/chi_tiet_pu_hh?pu_id=' + pu_id;
+    }
+    window.addEventListener('DOMContentLoaded', (event) => {
+           // Lấy danh sách tất cả các hàng trong tbody của bảng
+           var rows = document.querySelectorAll('tbody tr');
+           
+           // Lấy hàng cuối cùng trong danh sách
+           var lastRow = rows[rows.length - 1];
+           
+           // Kiểm tra nếu hàng cuối cùng không có nội dung, thì xóa nó đi
+           if (lastRow.cells[0].innerHTML === "") {
+               lastRow.parentNode.removeChild(lastRow);
+           }
+       });
+</script>
+{% endblock javascripts %}
